@@ -1,0 +1,20 @@
+# ignore python virtual environment and cache
+web_env/
+
+# ignore cache
+__pycache__/
+
+# ignore sensitive keys / personal information
+*.env
+message_templates.py
+*.session*
+
+# ignore vscode workspace configuration
+.vscode
+
+# ignore debug database information
+database
+
+# ignore models / tokenizers / generation configuration
+web_app/text_generation_models/*
+!web_app/text_generation_models/placeholder.txt

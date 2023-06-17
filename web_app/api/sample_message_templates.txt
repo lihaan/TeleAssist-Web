@@ -1,0 +1,16 @@
+# Create your own message_templates.py with the following variables
+
+USER_END_TEMPLATE = "Pssh [YOUR_NAME_HERE] is free now! Expect a reply soon! Bye!"
+GROUP_END_TEMPLATE = "Pssh [YOUR_NAME_HERE] is free now! Those who tagged him should expect a proper response soon! Bye!"
+
+# {reason} is a string placeholder which will be automatically formatted with the appropriate value while the app is running
+INTRODUCTION_TEMPLATE = "Hello, I'm an automated bot designed to reply when [YOUR_NAME_HERE] is busy! He/she/they is/are {reason} right now so I'll reply first!" 
+
+
+
+# Alternative option: Disguise the model as yourself! Set templates as None to not send these introductory / farewell message_templates
+
+USER_END_TEMPLATE = None
+GROUP_END_TEMPLATE = None
+
+INTRODUCTION_TEMPLATE = None
