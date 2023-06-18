@@ -1,7 +1,5 @@
 # ignore python virtual environment and cache
 web_env/
-
-# ignore cache
 __pycache__/
 
 # ignore sensitive keys / personal information
