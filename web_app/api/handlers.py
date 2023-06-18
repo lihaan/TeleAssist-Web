@@ -19,16 +19,10 @@ MY_HANDLE = secrets["MY_HANDLE"]
 
 async def handleStartAssistSession(data, client):
     if get_ongoing_busy_session() is not None:
-        return False
+        return (False, 1)
 
     set_model('text_gen', create_default_text_gen())
-
-    print("check if session exists, should be None", get_ongoing_busy_session())
-
     set_ongoing_busy_session(await new_busy_session(data["reason"], data["duration_mins"]))
-
-    print("get users spoken to", get_ongoing_busy_session().start_time_utc,
-          get_ongoing_busy_session().get_users_spoken_to())
 
     result_disable_notifs = await disable_notifs(client, get_ongoing_busy_session().end_time_utc)
 
@@ -40,7 +34,10 @@ async def handleStartAssistSession(data, client):
                                                ))
                              )
 
-    return True
+    if len(result_disable_notifs):
+        return (False, 2)
+
+    return (True, None)
 
 
 async def handleCheckAssistSession():
@@ -57,7 +54,7 @@ async def handleCheckAssistSession():
 
 async def handleEndAssistSession(client):
     if get_ongoing_busy_session() is None:
-        return (False, 1, None)
+        return (False, 1)
 
     delete_model('text_gen')
 
@@ -65,8 +62,6 @@ async def handleEndAssistSession(client):
 
     result_enable_notifs = await enable_notifs(client)
 
-    print("get spoken to", get_ongoing_busy_session().get_users_spoken_to(),
-          get_ongoing_busy_session().get_groups_spoken_to())
     if USER_END_TEMPLATE is not None:
         for chat_id in get_ongoing_busy_session().get_users_spoken_to():
             await put_into_reply_queue([USER_END_TEMPLATE], chat_id, True, get_ongoing_busy_session().id, False, True, send_msg_callback=client.send_message)
@@ -77,12 +72,10 @@ async def handleEndAssistSession(client):
     await get_ongoing_busy_session().end_session()
     set_ongoing_busy_session(None)
 
-    print("session should be None:", get_ongoing_busy_session())
-
     if len(result_enable_notifs):
-        return (False, 2, None)
+        return (False, 2)
 
-    return (True, None, None)
+    return (True, None)
 
 
 async def handle_new_message(event):
