@@ -1,7 +1,7 @@
 FROM python:3.10
 
 # set a directory for the app
-WORKDIR D:\Repositories\Competitions\hackgt\TeleAssistWeb\web_app
+WORKDIR /Repositories/Competitions/hackgt/TeleAssistWeb/web_app
 
 # copy all the files to the container
 COPY . .
