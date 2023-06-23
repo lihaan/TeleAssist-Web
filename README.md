@@ -138,4 +138,6 @@ Note that the functionality of this *TeleAssist - Web Server* is meant to be pai
 
 Although *TeleAssist* is simply a pet project of mine, I am super keen on improving it and expanding its capabilities. Feel free to raise issues to provide feedback if you have any. If this project has helped you in any way, do give it a star or [buy this struggling university student a coffee](https://www.buymeacoffee.com/lihanong)! Thank you!
 
+<a href="https://www.buymeacoffee.com/lihanong"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee (with rizz)&emoji=&slug=lihanong&button_colour=3a741a&font_colour=ffffff&font_family=Comic&outline_colour=ffffff&coffee_colour=FFDD00" /></a>
+
 ~ Li Han
